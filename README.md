@@ -1,4 +1,4 @@
 # Crypto Currency Trading Web Application
 
-![](./data/img/CryptoHomepage.jpg)
-![](./data/img/CryptoHomepage2.jpg)
+![](./data/CryptoHomepage.png)
+![](./data/CryptoHomepage2.png)
