@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+        <link href="static/styles.css" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Bitcoin Visual</title>
+        <script src="https://unpkg.com/lightweight-charts/dist/lightweight-charts.standalone.production.js"></script>
+    </head>
+    <body>
+        <h2 class="header">{{ title }}</h2>
+
+
+
+        <div id='chart' class='general'>BitCoin Candlestick Graph</div>
+
+        <div id='trades'></div>
+
+
+        <div style="border: solid rgb(18, 33, 241) 1px; padding: 20px; width: 1000px; margin-top: 50px; margin-bottom: 50px;">
+            <h3 class="buy">Buy Crypto</h3>
+            {% for category, message in get_flashed_messages(with_categories=True) %}
+                <div class="alert alert-danger" role="alert">
+                    Error: {{ message }}
+                </div>
+                
+            {% endfor %}
+        
+            
+            <form action="/buy" method="post">
+                <div class="input-group mb-3">
+                    <span class="input-group-text">Quantity</span>
+                    <input type="text" class="form-control" id="quantity" name="quantity" placeholder="eg. 0.05"">
+                </div>
+                <select class="form-select" id="symbol" name="symbol">
+                    <option selected>Symbol</option>
+                    {% for symbol in symbols %}
+                        <option>{{ symbol['symbol'] }}</option>
+                    {% endfor %}
+                </select>
+                <button type="submit" class="btn btn-success" name="buy" value="buy" style="margin-top: 15px;">Buy</button>
+            </form> 
+        </div>
+
+        <h3 class="title">Settings</h3>
+
+        <div id="settings" class="general">
+            <input type="checkbox" /> RSI 
+            <input type="text" id="rsi_length" name="rsi_length" placeholder="14" />
+            Oversold
+            <input type="text" id="rsi_oversold" name="rsi_oversold" placeholder="30" />
+            Overbought
+            <input type="text" id="rsi_overbought" name="rsi_overbought" placeholder="70" />
+            
+        </div>
+        
+
+        <div id="my_balance">
+            <h2 class="title">Balances</h2>
+            
+            <table>
+                {% for balance in my_blance %}
+                <tr>
+                    <td>
+                        {{ balance['asset'] }}
+                    </td>
+                    <td>
+                        {{ balance['free'] }}
+                    </td>
+                </tr>
+                {% endfor %}
+            </table>
+            
+        </div>
+
+
+        <script>
+            //var binanceSocket = new WebSocket("wss://stream.binance.com:9443/ws/btcusdt@trade");
+            
+
+            var tradeDiv = document.getElementById('trades') 
+            /*
+            binanceSocket.onmessage = function (event) {
+                console.log(event.data);
+
+                var messageObject = JSON.parse(event.data)
+
+                tradeDiv.append(messageObject.p)
+            } 
+            */
+        </script>
+        <script src="{{ url_for('static', filename='chart.js') }}"></script>
+    </body>
+</html>
