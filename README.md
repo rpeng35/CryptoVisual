@@ -21,3 +21,7 @@ In this application, user will be able to get real-time updates of a crypto and 
 - [Lightweight Charts](https://www.tradingview.com/lightweight-charts/)
 
 
+### Next Steps:
+- Make a dropdown that allows users to view the graph of other cryptos
+- Add algorithms like RSI and MSE that analyze the trend
+- Upgrade it to a trading bot!
