@@ -3,7 +3,7 @@
 ### Overview
 In this application, user will be able to get real-time updates of a crypto and is presented in a candlestick graph. The web app uses the Binance API to fetch data. Users can also buy specific crypto with their desired quantity.
 
-![](./data/CryptoHomepage.png)
+![](./data/crypto.gif)
 ![](./data/CryptoHomepage2.png)
 
 
